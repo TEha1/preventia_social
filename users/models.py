@@ -25,9 +25,6 @@ class User(AbstractUser):
     email = models.EmailField(
         blank=True,
         null=True,
-        error_messages={
-            'unique': _("A user with that email already exists."),
-        },
         verbose_name=_('email address')
     )
     personal_image = models.ImageField(
@@ -102,4 +99,3 @@ class FriendShip(BaseModel):
     def accept(self):
         self.status = self.ACCEPTED
         self.save()
-
