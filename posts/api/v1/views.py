@@ -17,6 +17,7 @@ from utilities.viewsets import (
 
 @method_decorator(name='list', decorator=swagger_auto_schema(manual_parameters=post_field_expand))
 class PostResource(ModelViewSet):
+    http_method_names = ['post', 'get', 'patch', 'put', 'head']
     serializer_class = PostSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = [
@@ -61,6 +62,7 @@ class PostResource(ModelViewSet):
 
 @method_decorator(name='list', decorator=swagger_auto_schema(manual_parameters=comment_field_expand))
 class CommentResource(ModelViewSet):
+    http_method_names = ['post', 'get', 'patch', 'put', 'head']
     serializer_class = CommentSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = [

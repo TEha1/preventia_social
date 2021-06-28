@@ -23,6 +23,7 @@ User = get_user_model()
 
 @method_decorator(name='list', decorator=swagger_auto_schema(manual_parameters=user_field_expand))
 class UserResource(ModelViewSet):
+    http_method_names = ['post', 'get', 'patch', 'put', 'head']
     queryset = User.objects.filter(is_superuser=False, is_staff=False, is_active=True).order_by('-created_at')
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = [
