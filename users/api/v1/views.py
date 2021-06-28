@@ -23,8 +23,6 @@ User = get_user_model()
 
 @method_decorator(name='list', decorator=swagger_auto_schema(manual_parameters=user_field_expand))
 class UserResource(ModelViewSet):
-    authentication_classes = []
-    permission_classes = []
     queryset = User.objects.filter(is_superuser=False, is_staff=False, is_active=True).order_by('-created_at')
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = [
@@ -44,6 +42,12 @@ class UserResource(ModelViewSet):
         if self.action in ['list', 'retrieve', ]:
             return UserDetailsSerializer
         return UserSerializer
+
+    def get_permissions(self):
+        if self.action in ['create', ]:
+            self.permission_classes = []
+            self.authentication_classes = []
+        return super(UserResource, self).get_permissions()
 
     def perform_create(self, serializer):
         return serializer.save()
