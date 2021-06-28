@@ -26,9 +26,9 @@ class CommentAdmin(BaseAdmin):
         'modified_at',
         'manage_buttons',
     ]
-    list_filter = [
-        'user',
-        'post',
+    search_fields = [
+        'user__username',
+        'post__text',
     ]
 
 
@@ -41,9 +41,9 @@ class LikeAdmin(BaseAdmin):
         'modified_at',
         'manage_buttons',
     ]
-    list_filter = [
-        'user',
-        'post',
+    search_fields = [
+        'user__username',
+        'post__text',
     ]
 
 
@@ -56,6 +56,6 @@ class AttachmentAdmin(BaseAdmin):
         'modified_at',
         'manage_buttons',
     ]
-    list_filter = [
-        'post',
+    search_fields = [
+        'post__text',
     ]
