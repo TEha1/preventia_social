@@ -24,6 +24,9 @@ class Post(BaseModel):
         verbose_name = _("post")
         verbose_name_plural = _("posts")
         ordering = ['-id']
+        indexes = [
+            models.Index(fields=['text', ]),
+        ]
 
     def __str__(self):
         return f'post - {self.pk}'

@@ -45,9 +45,9 @@ class PostResource(ModelViewSet):
     @action(detail=True, methods=['post', ], url_path='like-dislike', url_name='like_dislike')
     def like_unlike(self, request, pk):
         post = self.get_object()
-        sponsored = post.like_dislike(self.request.user.id)
+        liked = post.like_dislike(self.request.user.id)
 
-        if sponsored:
+        if liked:
             message = _("post liked")
         else:
             message = _("post disliked")

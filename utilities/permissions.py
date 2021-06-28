@@ -6,6 +6,4 @@ User = get_user_model()
 
 class IsActiveUser(BasePermission):
     def has_permission(self, request, view):
-        if request.user.is_active == True:
-            return True
-        return False
+        return request.user.is_active
